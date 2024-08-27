@@ -4,7 +4,7 @@ This repository uses a **reinforcement learning** technique called Q-learning to
 
 TLDR: Nim is a two-player game that involves a number of piles of items. Each player has to remove a number of items, which can be any nonzero number of items that all have to be from the same pile. Whoever removes the last item loses. 
 
-The idea for this repository came from a Harvard CS50 Introduction to AI with Python course [project](https://cs50.harvard.edu/ai/2024/projects/4/nim/), where the structure of the implementation all comes from. 
+The idea for this repository came from a course [project](https://cs50.harvard.edu/ai/2024/projects/4/nim/) in Harvard CS50 Introduction to AI with Python, where the structure of the implementation all comes from. The only new code written here fills the methods of the class `NimAI`. 
 
 ## How it all works
 
@@ -12,7 +12,7 @@ Q-learning is a reinforcement learning algorithm that assigns values to actions 
 
 It assigns rewards or penalties to actions from state based on the result (i.e. winning or losing the game) and stores the result in a Python dictionary. 
 
-The penalty or reward value is called the Quality value, or Q value, which depends on a state and an action from that state and is written as $$Q(s, a)$$. There, $$s$$ represents a state, and $$a$$ represents an action from state $$s$$.
+The overall feedback factor is called the Quality value, or Q value, which depends on a state and an action from that state and is written as $$Q(s, a)$$. There, $$s$$ represents a state, and $$a$$ represents an action from state $$s$$.
 
 This allows the "world" of the game to improve the game performance of the agent.
 
