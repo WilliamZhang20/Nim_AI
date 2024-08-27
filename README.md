@@ -42,7 +42,9 @@ Download or copy the files `nim.py` and `play.py`, and run `play.py`. No additio
 
 When you run `play.py`. There will be printouts confirming the agent playing games against itself. Then, a randomly generated set of 4 piles will appear.
 
-A random selection will determine the first player, which may be either the user or the AI agent. At each of the user's moves, the user selects a pile number and the number of items taken from it. 
+A random selection will determine the first player, which may be either the user or the AI agent. Moves will then alternate between the user and the AI agent.
+
+At each of the user's moves, the user selects a pile number and the number of items taken from it. 
 
 When there are no more items left, a winner is declared.
 

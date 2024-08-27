@@ -104,7 +104,7 @@ class NimAI():
         Return the Q-value for the state `state` and the action `action`.
         If no Q-value exists yet in `self.q`, return 0.
         """
-        return self.q.get((tuple(state), action), 0)
+        return self.q.get((tuple(state), action), 0) # By default 0 
 
     def update_q_value(self, state, action, old_q, reward, future_rewards):
         """
@@ -158,7 +158,7 @@ class NimAI():
         """
         available_actions = list(Nim.available_actions(state))
 
-        if epsilon and random.random() < self.epsilon:
+        if epsilon and random.random() < self.epsilon: # random.random() is a float between 0 and 1
             return random.choice(available_actions)
 
         # Choose the best action based on Q-value
@@ -207,13 +207,13 @@ def train(n):
 
             # When game is over, update Q values with rewards
             if game.winner is not None:
-                player.update(state, action, new_state, -1)
+                player.update(state, action, new_state, -1) # update final losing state and action Q-value
                 player.update(
                     last[game.player]["state"],
                     last[game.player]["action"],
                     new_state,
                     1
-                )
+                ) # udpate winning state and action
                 break
 
             # If game is continuing, no rewards yet
