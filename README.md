@@ -20,15 +20,17 @@ Initially, the Nim AI agent's Q value dictionary has all $$Q(s, a)$$ values set 
 
 Along the way, it updates Q values according to an estimated future reward, without any immediate reward, as we don't know who has won or lost. 
 
-At the end of each training round, it updates Q values by assigning a reward of 1 to the winner, and a -1 reward to the loser, for the AI agent to update Q values for the winning and losing states. 
+At the end of each training round, it updates Q values by assigning a reward of 1 to the winner, -1 reward to the loser, for the AI agent to update Q values for the winning and losing states. 
 
-This is done by computing:
+After 10,000 rounds of updating Q-values, the algorithm will have been able to explore many different states and optimize $$Q(s, a)$$ for many states so that it can play as optimally as possible. 
+
+Q-value updates are done by computing:
 
 $$
-Q(s, a) \longleftarrow Q(s, a) + \alpha((R + \gamma \hspace{5pt} \begin{equation} \underset{a'}{max} \end{equation} Q(s', a') - Q(s, a))
+Q(s, a) \longleftarrow Q(s, a) + \alpha((R + \gamma \hspace{5pt} \begin{equation} \underset{a'}{max} \end{equation} (Q(s', a') - Q(s, a)))
 $$
 
-In the above equation, the new Q value for a state-action pair is computed from the current value, the reward received, the learning rate $$\alpha$$, and the discount factor.
+In the above equation, the new Q value for a state-action pair is computed from the current value, the reward received $$R$$, the learning rate $$\alpha$$, and the discount factor.
 
 The discount factor, $$\gamma\$$, is [associated](https://stats.stackexchange.com/questions/221402/understanding-the-role-of-the-discount-factor-in-reinforcement-learning) with the _time bias_ of the reward result. The smaller the $$\gamma\$$, the more myopic the algorithm. 
 
