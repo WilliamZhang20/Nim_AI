@@ -2,7 +2,6 @@ import math
 import random
 import time
 
-
 class Nim():
 
     def __init__(self):
@@ -75,7 +74,7 @@ class Nim():
 
 class NimAI():
 
-    def __init__(self, alpha=0.5, epsilon=0.1):
+    def __init__(self, alpha=0.5, epsilon=1.0):
         """
         Initialize AI with an empty Q-learning dictionary,
         an alpha (learning) rate, and an epsilon rate.
@@ -178,9 +177,12 @@ def train(n):
     """
 
     player = NimAI()
-
+    episode = 0
+    decay_rate = 0.1
+    
     # Play n games
     for i in range(n):
+
         print(f"Playing training game {i + 1}")
         game = Nim()
 
@@ -208,22 +210,15 @@ def train(n):
             # When game is over, update Q values with rewards
             if game.winner is not None:
                 player.update(state, action, new_state, -1) # update final losing state and action Q-value
-                player.update(
-                    last[game.player]["state"],
-                    last[game.player]["action"],
-                    new_state,
-                    1
-                ) # udpate winning state and action
+                player.update(last[game.player]["state"], last[game.player]["action"], new_state, 1) # udpate winning state and action
                 break
 
             # If game is continuing, no rewards yet
             elif last[game.player]["state"] is not None:
-                player.update(
-                    last[game.player]["state"],
-                    last[game.player]["action"],
-                    new_state,
-                    0
-                )
+                player.update(last[game.player]["state"], last[game.player]["action"], new_state, 0 )
+
+        episode += 1
+        player.epsilon = math.exp(-decay_rate * episode)
 
     print("Done training")
 
