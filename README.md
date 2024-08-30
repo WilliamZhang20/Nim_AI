@@ -36,6 +36,8 @@ The discount factor, $$\gamma\$$, is [associated](https://stats.stackexchange.co
 
 For a game like Nim, where the "real reward" comes at the end of the game, in the form of winning or losing, we want to be as far-sighted as possible, so it is 1. This will make future rewards just as important as present rewards. If it were to be greater than 1, the Q value function may diverge and become unbounded. 
 
+To address the exploration-exploitation dilemma, I used the epsilon greedy strategy with an annealed epsilon. This was done by setting a threshold at every round of the training, which starts at 1 and decreases exponentially with a preset decay rate, making the overall trend $$e^{\lambda t}$$. Then, the training function for choosing an action generates a random number between 0 and 1, which has a probability of $$\varepsilon $$ of falling under the threshold. If so, a random action is chosen. Otherwise, the maximum q-valued action is chosen from the state.
+
 ## How to play it
 
 Download or copy the files `nim.py` and `play.py`, and run `play.py`. No additional PyPl libraries are needed.
